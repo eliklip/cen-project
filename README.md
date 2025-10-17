@@ -29,7 +29,7 @@ Activate:
 mac: 
 ```source venv/bin/activate```
 windows: 
-```venv\Scripts```
+```venv\Scripts\activate```
 
 #### 3. Install Dependencies
 ```pip install -r requirements.txt```
