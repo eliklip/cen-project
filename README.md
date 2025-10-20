@@ -35,9 +35,9 @@ windows:
 ```pip install -r requirements.txt```
 
 #### 4. Create a database
-Go into the root of the directory in ```cen-project\``` and create a new file, call it "database.sqlite3". We won't have anything in there yet but that's where the setup_db.py file will create tables in, and where we will write to for our database. 
+Go into the root of the directory in ```cen-project\``` and create a new file, call it "database.sqlite3". We won't have anything in there yet, but that's where the setup_db.py file will create tables in and where we will write to for our database. 
 
-Also I highly recommend installing the plugin "Sqlite Viewer" because it will let you open up our sql database and peak inside of it.
+Also I highly recommend installing the plugin "Sqlite Viewer," because it will let you open up our sql database and peek inside of it.
 
 #### 5. Run Application
 ```flash --app app run``` or ```flask run```
