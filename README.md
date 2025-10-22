@@ -40,7 +40,7 @@ cen-project/
 docker-compose.yml         # Container stack (root directory)
 .env                       # Environment variables (root directory)
 ```
-
+Important: "docker-compose.yml" and ".env" go in an outer directory. So create a folder called something like "cen" and then move the "cen-project" github repository inside of it. Then add your docker-compose.yml and .env files. Will be attached in Slack.
 
 ## Docker Deployment
 
