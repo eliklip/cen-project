@@ -1,10 +1,11 @@
+.git
 __pycache__/
 *.py[cod]
 *.sqlite3
 instance/
-.env
-.env.*
 .venv/
 venv/
+.env
 docker-compose.yml
-docker/local/
+tests/
+docs/
