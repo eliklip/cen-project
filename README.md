@@ -47,6 +47,7 @@ Important: "docker-compose.yml" and ".env" go in an outer directory. So create a
 ### Prerequisites
 
 - Install **Docker Desktop** (includes Docker Engine & Docker Compose) from https://www.docker.com/products/docker-desktop/
+- Docker desktop must be installed and the application must be open on your computer in order to run the flask app
 
 ### Environment Configuration
 
