@@ -2,7 +2,7 @@
 ### Moore's Template Statement
 
 #### 1. FOR:
-Social service employees and casual language learners
+Social service employees and casual language learnersa
 #### 2. WHO 
 Need a simple way to capture and practice real-world phrases.
 #### 3. LEMMATICA 
@@ -19,74 +19,70 @@ the equivalent translation pulled via API. Users can then study using a recall f
 optionally study with curated “essential vocab” packs designed for immigrant and refugee support.
 
 
-### Instructions 
+## Project Structure
 
-#### 1. Clone the Repository
+```text
+cen-project/
+├── app.py                 # Flask entry point (debug runner)
+├── config.py              # App configuration (secret key, DB URI)
+├── requirements.txt       # Python dependencies
+├── wsgi.py                # Gunicorn entry point for production
+├── docker/
+│   └── nginx/default.conf # Reverse proxy configuration
+└── app/
+    ├── __init__.py        # Application factory & blueprint registration
+    ├── extensions.py      # SQLAlchemy setup
+    ├── models/orm_objects.py
+    ├── scripts/setup_db.py
+    ├── main/, auth/, cards/, sets/, practice/  # Feature blueprints
+    └── templates/         # Jinja templates
 
-#### 2. Create virtual environment
-```python -m venv venv ```
-Activate:
-mac: 
-```source venv/bin/activate```
-windows: 
-```venv\Scripts\activate```
-
-#### 3. Install Dependencies
-```pip install -r requirements.txt```
-
-#### 4. Create a database
-Go into the root of the directory in ```cen-project\``` and create a new file, call it "database.sqlite3". We won't have anything in there yet, but that's where the setup_db.py file will create tables in and where we will write to for our database. 
-
-Also I highly recommend installing the plugin "Sqlite Viewer," because it will let you open up our sql database and peek inside of it.
-
-#### 5. Run Application
-```flash --app app run``` or ```flask run```
-Then visit: Visit: http://127.0.0.1:5000 in your web browser
+docker-compose.yml         # Container stack (root directory)
+.env                       # Environment variables (root directory)
+```
 
 
-### File Structure Breakdown 
+## Docker Deployment
 
-```flashcards_app/
-│
-├── app.py # Flask entry point
-├── config.py # App configuration (DB URI, secret key, etc.)
-├── requirements.txt # Python dependencies
-│
-├── /app/
-│ ├── init.py # App factory, registers blueprints, initializes extensions
-│ ├── extensions.py # Shared Flask extensions (db = SQLAlchemy())
-│ ├── /models/
-│ │ └── orm_objects.py # SQLAlchemy ORM classes (User, Card, Set, CardSet)
-│ ├── /scripts/
-│ │ └── setup_db.py # Script to initialize database and tables
-│ │
-│ ├── /main/ # Dashboard and general pages
-│ │ ├── init.py
-│ │ ├── routes.py
-│ │ └── templates/dashboard.html
-│ │
-│ ├── /auth/ # Authentication (signup/login)
-│ │ ├── init.py
-│ │ └── routes.py
-│ │
-│ ├── /cards/ # Flashcard CRUD
-│ │ ├── init.py
-│ │ └── routes.py
-│ │
-│ ├── /sets/ # Set CRUD
-│ │ ├── init.py
-│ │ └── routes.py
-│ │
-│ └── /practice/ # Practice sessions
-│ ├── init.py
-│ └── routes.py
-│
-└── /app/templates/ # Global shared templates
-├── base.html # Main layout with header, content blocks
-└── layout_header.html # Navigation/header included in base.html```
+### Prerequisites
 
-Blueprints: Each feature (auth, cards, sets, practice, main) is separated into its own module. These are called "blueprints"
+- Install **Docker Desktop** (includes Docker Engine & Docker Compose) from https://www.docker.com/products/docker-desktop/
 
-Database: Uses SQLAlchemy ORM. Models are in /app/models/orm_objects.py. Tables are created via /app/scripts/setup_db.py. We will write these later when we are ready, once we've designed our ER model.
+### Environment Configuration
 
-Templates: Jinja templates are in /app/templates (global) or in blueprint-specific templates/ folders. You can edit these to see changes.
+1. Copy `.env` in the repository root (or create it) and adjust values:
+   - `SECRET_KEY`: Flask secret for session signing.
+   - `APP_PORT`: External port for nginx (default `8025`).
+   - `DB_PORT`: Internal MariaDB port (default `3306`).
+   - `DB_NAME`: Database schema name.
+   - `DB_USER` / `DB_PASSWORD`: Application DB credentials.
+   - `MARIADB_ROOT_PASSWORD`: MariaDB root password.
+
+### Commands
+
+Run these from the root directory (where `docker-compose.yml` resides):
+
+```bash
+# Build or rebuild images
+docker-compose build
+
+# Start the stack in detached mode
+docker-compose up -d
+
+# Follow logs (cen-app | cen-nginx | cen-db)
+docker-compose logs -f --tail 200 <container_name>
+
+# Stop and remove the stack
+docker-compose down
+```
+
+Once running, access the app at `http://localhost:${APP_PORT}` (default `http://localhost:8025`).
+
+> **Note:** If you change environment variables or dependencies, rebuild with `docker-compose build` to capture the updates.
+
+## Additional Notes
+
+- Blueprint modules (`app/auth`, `app/cards`, etc.) keep routes organized by feature.
+- Database models live in `app/models/orm_objects.py` and use SQLAlchemy.
+- Static and template assets reside under `app/templates` and blueprint-specific template directories.
+- For production deployments, the Docker stack uses Gunicorn (`cen-project/wsgi.py`) behind nginx with MariaDB for persistence.
