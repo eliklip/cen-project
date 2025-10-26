@@ -23,4 +23,8 @@ ENV FLASK_ENV=production
 
 EXPOSE 8000
 
+COPY docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "wsgi:app"]
