@@ -87,3 +87,55 @@ Once running, access the app at `http://localhost:${APP_PORT}` (default `http://
 - Database models live in `app/models/orm_objects.py` and use SQLAlchemy.
 - Static and template assets reside under `app/templates` and blueprint-specific template directories.
 - For production deployments, the Docker stack uses Gunicorn (`cen-project/wsgi.py`) behind nginx with MariaDB for persistence.
+
+## Current docker-compose.yml
+```docker-compose
+services:
+  db:
+    image: mariadb:11.4
+    container_name: cen-db
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${DB_NAME}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD-SHELL", "mariadb-admin ping -h localhost -P ${DB_PORT} -u $$MARIADB_USER --password=$$MARIADB_PASSWORD --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build:
+      context: ./cen-project
+      dockerfile: Dockerfile
+    container_name: cen-app
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SECRET_KEY: ${SECRET_KEY}
+      SQLALCHEMY_DATABASE_URI: mysql+pymysql://${DB_USER}:${DB_PASSWORD}@db:${DB_PORT}/${DB_NAME}
+    expose:
+      - "8000"
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: cen-nginx
+    depends_on:
+      - web
+    ports:
+      - "${APP_PORT}:80"
+    volumes:
+      - ./cen-project/docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped
+
+volumes:
+  db_data:
+```
