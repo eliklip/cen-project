@@ -2,7 +2,7 @@
 ### Moore's Template Statement
 
 #### 1. FOR:
-Social service employees and casual language learnersa
+Social service employees and casual language learners
 #### 2. WHO 
 Need a simple way to capture and practice real-world phrases.
 #### 3. LEMMATICA 
