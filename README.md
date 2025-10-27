@@ -103,9 +103,9 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "${DB_PORT}:3306"
     healthcheck:
-      test: ["CMD-SHELL", "mariadb-admin ping -h localhost -P ${DB_PORT} -u $$MARIADB_USER --password=$$MARIADB_PASSWORD --silent"]
+      test: ["CMD-SHELL", "mariadb-admin ping -h localhost -P 3306 -u $$MARIADB_USER --password=$$MARIADB_PASSWORD --silent"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -120,7 +120,7 @@ services:
         condition: service_healthy
     environment:
       SECRET_KEY: ${SECRET_KEY}
-      SQLALCHEMY_DATABASE_URI: mysql+pymysql://${DB_USER}:${DB_PASSWORD}@db:${DB_PORT}/${DB_NAME}
+      SQLALCHEMY_DATABASE_URI: mysql+pymysql://${DB_USER}:${DB_PASSWORD}@db:3306/${DB_NAME}
     expose:
       - "8000"
     restart: unless-stopped
@@ -136,6 +136,8 @@ services:
       - ./cen-project/docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     restart: unless-stopped
 
+
 volumes:
   db_data:
+
 ```
