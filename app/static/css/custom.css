@@ -1,29 +1,25 @@
-/* Fonts */
-body {
-    font-family: 'Inter', sans-serif;
-}
-h1, h2, h3, h4, h5, h6, .navbar-brand, .sidebar .nav-link {
-    font-family: 'Poppins', sans-serif;
-}
-
-/* Sidebar collapse */
-.sidebar.collapsed {
-    width: 0 !important;
-    min-width: 0 !important;
-    overflow: hidden;
-    transition: width 0.3s;
-}
-#content-wrapper {
-    transition: margin-left 0.3s;
-}
-.sidebar.collapsed + #content-wrapper {
-    margin-left: 0 !important;
+/* When sidebar is toggled */
+body.sidebar-toggled .sidebar {
+  width: 0;               /* completely hide */
+  min-width: 0;
+  overflow: hidden;
+  transition: width 0.3s ease;
 }
 
-/* Topbar adjustments */
-.topbar .form-inline {
-    max-width: 300px;
+/* Optional: adjust main content to fill space */
+body.sidebar-toggled main {
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
 }
-.topbar .nav-item .nav-link {
-    color: #333;
+
+/* Normal sidebar width */
+.sidebar {
+  width: 250px;           /* adjust to your sidebar width */
+  transition: width 0.3s ease;
+}
+
+/* Hamburger always visible in topbar */
+#sidebarToggleTop {
+  z-index: 1001;          /* ensure it sits above everything */
+  position: relative;
 }
