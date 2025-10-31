@@ -8,8 +8,10 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}">
-  <!-- Bootstrap Icons-->
-   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <!-- Bootstrap Icons -->
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css')}}">
 </head>
 <body id="page-top">
 
@@ -17,7 +19,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav vivid-blue sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-vividblue sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Nav Items -->
       <li class="nav-item">
@@ -67,7 +69,7 @@
       <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-dark vivid-blue topbar mb-4 static-top shadow">
+        <nav class="navbar navbar-expand navbar-dark bg-vividblue topbar mb-4 static-top shadow">
 
         <!-- Sidebar Toggler-->
         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle me-3">
