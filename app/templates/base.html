@@ -2,102 +2,147 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>{{ page_title or "Flashcards App" }}</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <title>{{ page_title or "Lemmatica" }}</title>
 
   <!-- SB Admin 2 CSS -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}">
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
-
-  <!-- FontAwesome for icons -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}">
 </head>
 <body id="page-top">
 
-  <!-- Topbar -->
-  <nav class="navbar navbar-expand navbar-light bg-white topbar shadow">
-    <!-- Sidebar Toggle Button -->
-    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle me-3">
-      <i class="fa fa-bars"></i>
-    </button>
+  <!-- Page Wrapper -->
+  <div id="wrapper">
 
-    <!-- App Name -->
-    <a class="navbar-brand fw-bold" href="{{ url_for('main.dashboard') }}">Flashcards App</a>
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-    <!-- Topbar Right Section -->
-    <ul class="navbar-nav ms-auto align-items-center">
-      <!-- Search bar -->
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url_for('main.dashboard') }}">
+        <div class="sidebar-brand-icon">
+          <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Lemmatica</div>
+      </a>
+
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Items -->
       <li class="nav-item">
-        <form class="d-none d-sm-inline-block form-inline me-2">
-          <div class="input-group">
-            <input type="text" class="form-control bg-light border-0 small" placeholder="Search..." aria-label="Search">
-            <button class="btn btn-primary" type="button">
-              <i class="fas fa-search fa-sm"></i>
-            </button>
-          </div>
-        </form>
-      </li>
-      <!-- Accounts icon -->
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('auth.login') }}">
-          <i class="fas fa-user-circle fa-lg"></i>
+        <a class="nav-link" href="{{ url_for('main.dashboard') }}">
+          <i class="fas fa-tachometer-alt"></i>
+          <span>Dashboard</span>
         </a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('auth.login') }}">
+          <i class="fas fa-sign-in-alt"></i>
+          <span>Login</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('cards.cards_home') }}">
+          <i class="fas fa-book"></i>
+          <span>Cards</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('sets.sets_home') }}">
+          <i class="fas fa-layer-group"></i>
+          <span>Sets</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('practice.practice_home') }}">
+          <i class="fas fa-play-circle"></i>
+          <span>Practice</span>
+        </a>
+      </li>
+
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
     </ul>
-  </nav>
+    <!-- End of Sidebar -->
 
-  <!-- Sidebar -->
-  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-    <li class="nav-item">
-      <a class="nav-link" href="{{ url_for('main.dashboard') }}">
-        <i class="fas fa-tachometer-alt"></i>
-        <span>Dashboard</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{ url_for('cards.cards_home') }}">
-        <i class="fas fa-book"></i>
-        <span>Cards</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{ url_for('sets.sets_home') }}">
-        <i class="fas fa-layer-group"></i>
-        <span>Sets</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{ url_for('practice.practice_home') }}">
-        <i class="fas fa-play"></i>
-        <span>Practice</span>
-      </a>
-    </li>
-  </ul>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
 
-  <!-- Main Content -->
-  <div id="content-wrapper" class="d-flex flex-column">
-    <div id="content">
-      <main class="p-4">
-        {% block content %}{% endblock %}
-      </main>
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-light topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle me-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <!-- App Name -->
+          <a class="navbar-brand" href="{{ url_for('main.dashboard') }}">Flashcards App</a>
+
+          <!-- Topbar Search -->
+          <form class="d-none d-sm-inline-block form-inline ms-auto me-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search">
+              <button class="btn btn-primary" type="button">
+                <i class="fas fa-search fa-sm"></i>
+              </button>
+            </div>
+          </form>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ms-auto">
+
+            <!-- Account Icon -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user-circle fa-lg"></i>
+              </a>
+              <!-- Dropdown menu can go here if needed -->
+            </li>
+
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+          {% block content %}{% endblock %}
+        </div>
+        <!-- End Page Content -->
+
+      </div>
+      <!-- End Main Content -->
+
     </div>
+    <!-- End Content Wrapper -->
+
   </div>
+  <!-- End Page Wrapper -->
 
   <!-- Scripts -->
   <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
   <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
 
+  <!-- Sidebar toggle script -->
   <script>
-    // Sidebar toggle
-    const sidebar = document.getElementById('accordionSidebar');
-    const toggleBtn = document.getElementById('sidebarToggleTop');
-    toggleBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('collapsed');
+    document.getElementById('sidebarToggleTop').addEventListener('click', function() {
+      document.body.classList.toggle('sidebar-toggled');
+      document.querySelector('.sidebar').classList.toggle('toggled');
     });
   </script>
+
 </body>
 </html>
