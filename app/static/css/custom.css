@@ -1,0 +1,29 @@
+/* Fonts */
+body {
+    font-family: 'Inter', sans-serif;
+}
+h1, h2, h3, h4, h5, h6, .navbar-brand, .sidebar .nav-link {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Sidebar collapse */
+.sidebar.collapsed {
+    width: 0 !important;
+    min-width: 0 !important;
+    overflow: hidden;
+    transition: width 0.3s;
+}
+#content-wrapper {
+    transition: margin-left 0.3s;
+}
+.sidebar.collapsed + #content-wrapper {
+    margin-left: 0 !important;
+}
+
+/* Topbar adjustments */
+.topbar .form-inline {
+    max-width: 300px;
+}
+.topbar .nav-item .nav-link {
+    color: #333;
+}
