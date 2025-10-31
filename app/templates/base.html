@@ -20,9 +20,9 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url_for('main.dashboard') }}">
+      <button id="sidebarToggleTop" class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url_for('main.dashboard') }}">
         <i class="fas fa-bars fa-lg"></i>
-      </a>
+      </button>
 
       <hr class="sidebar-divider my-0">
 
@@ -74,11 +74,6 @@
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-light topbar mb-4 static-top shadow">
-
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link rounded-circle me-3">
-            <i class="fa fa-bars"></i>
-          </button>
 
           <!-- App Name -->
           <a class="navbar-brand" href="{{ url_for('main.dashboard') }}">Lemmatica</a>
