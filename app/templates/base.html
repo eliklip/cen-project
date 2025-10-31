@@ -4,17 +4,33 @@
   <meta charset="UTF-8">
   <title>{{ page_title or "Flashcards App" }}</title>
 
+  <!-- SB Admin 2 CSS -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}">
 </head>
-<body>
-  {% include 'layout_header.html' %}
-  <main>
-    {% block content %}{% endblock %}
-  </main>
+<body id="page-top">
 
-  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
-  
-</body>
-</html>
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+      
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url_for('main.dashboard') }}">
+        <div class="sidebar-brand-text mx-3">Flashcards</div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Items -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('main.dashboard') }}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+
+      <!-- Add more nav items here -->
+
+      <!-- Sideba
