@@ -19,13 +19,6 @@
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-      <!-- Sidebar - Brand -->
-      <button id="sidebarToggleTop" class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url_for('main.dashboard') }}">
-        <i class="fas fa-bars fa-lg"></i>
-      </button>
-
-      <hr class="sidebar-divider my-0">
-
       <!-- Nav Items -->
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('main.dashboard') }}">
@@ -63,6 +56,7 @@
       </li>
 
       <hr class="sidebar-divider d-none d-md-block">
+
     </ul>
     <!-- End of Sidebar -->
 
@@ -74,6 +68,11 @@
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-light topbar mb-4 static-top shadow">
+
+        <!-- Sidebar Toggler-->
+        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle me-3">
+            <i class="fas fa-bars fa-lg"></i>
+        </button>
 
           <!-- App Name -->
           <a class="navbar-brand" href="{{ url_for('main.dashboard') }}">Lemmatica</a>
