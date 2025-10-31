@@ -20,3 +20,7 @@ body.sidebar-toggled .sidebar {
   z-index: 1001;          /* ensure it sits above everything */
   position: relative;
 }
+
+.bg-vividblue {
+    background-color: #4255ff;
+}
