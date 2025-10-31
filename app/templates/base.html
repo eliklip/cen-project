@@ -3,11 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>{{ page_title or "Flashcards App" }}</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}">
 </head>
 <body>
   {% include 'layout_header.html' %}
   <main>
     {% block content %}{% endblock %}
   </main>
+
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
+  
 </body>
 </html>
