@@ -17,7 +17,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav vivid-blue sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Nav Items -->
       <li class="nav-item">
@@ -67,7 +67,7 @@
       <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-light topbar mb-4 static-top shadow">
+        <nav class="navbar navbar-expand navbar-dark vivid-blue topbar mb-4 static-top shadow">
 
         <!-- Sidebar Toggler-->
         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle me-3">
@@ -77,18 +77,18 @@
           <!-- App Name -->
           <a class="navbar-brand" href="{{ url_for('main.dashboard') }}">Lemmatica</a>
 
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline ms-auto me-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search">
-              <button class="btn btn-primary" type="button">
-                <i class="fas fa-search fa-sm"></i>
-              </button>
-            </div>
-          </form>
-
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ms-auto">
+
+            <!-- Topbar Search -->
+            <form class="d-none d-sm-inline-block form-inline ms-auto me-3 my-2 my-md-0 mw-100 navbar-search">
+              <div class="input-group">
+                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search">
+                <button class="btn btn-primary" type="button">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </form>
 
             <!-- Account Icon -->
             <li class="nav-item dropdown no-arrow">

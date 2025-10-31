@@ -1,20 +1,17 @@
+/* Normal sidebar width */
+.sidebar {
+  width: 250px;           /* adjust to your sidebar width */
+  transition: width 0.3s ease;
+  top: 56px;
+  height: calc(100% - 56px);
+  position:fixed;
+}
+
 /* When sidebar is toggled */
 body.sidebar-toggled .sidebar {
   width: 0;               /* completely hide */
   min-width: 0;
   overflow: hidden;
-  transition: width 0.3s ease;
-}
-
-/* Optional: adjust main content to fill space */
-body.sidebar-toggled main {
-  margin-left: 0;
-  transition: margin-left 0.3s ease;
-}
-
-/* Normal sidebar width */
-.sidebar {
-  width: 250px;           /* adjust to your sidebar width */
   transition: width 0.3s ease;
 }
 
